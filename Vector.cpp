@@ -15,7 +15,7 @@ struct Vector
     {
         if(index<size)
         {
-            printf("%d",value[index]);
+            printf("%d\n",value[index]);
         }
         else
         printf("Not exist\n");
@@ -30,30 +30,54 @@ struct Vector
         value[size]=x;
         size++;
     }
-    int del(int index)
+    void del()
     {
-        if(size<maxsize)
+        if(size<maxsize/2)
         {
-            for(int i=0;)
+            maxsize=2*maxsize;
+            value=(int*)realloc(value,size*sizeof(int));
         }
-        value[size]=x;
-        size++;
+        value[size]=NULL;
+       size--;
     }
 };
 
 int main()
 {
     Vector v=Vector();
-    v.add(6);
-    v.add(8);
-    v.add(5);
-    v.add(7);
-    v.add(4);
-     v.add(4);
+    int t;
+    printf("Your Operation= ");
+    scanf("%d",&t);
 
-    for(int i=0;i<6;i++)
+    while(t--)
+    {
+        int select;
+        printf("Press 1 for add\nPress 2 delete \nPress 3 for find\n");
+        scanf("%d",&select);
+        if(select==1)
+        {
+            int x;
+            scanf("%d",&x);
+            v.add(x);
+        }
+        else if(select==2)
+        {
+            v.del();
+        }
+        else if(select==3)
+        {
+            int x;
+            scanf("%d",&x);
+            v.getvalue(x);
+        }
+
+    for(int i=0;i<v.size;i++)
     {
         printf("%d ",v.value[i]);
     }
+    printf("\n");
+
+    }
+
 
 }
